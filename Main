@@ -1,0 +1,33 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def count_words():
+  text = text_entry.get("1.0", tk.END)
+  word_count = count_words_function(text)  # Replace with your word counting function
+  result_label.config(text=f"Word count: {word_count}")
+
+def count_words_function(text):
+  # Your word counting logic here
+  import re
+  text = re.sub(r'[^\w\s]', '', text)
+  text = text.strip()
+  words = text.split()
+  return len(words)
+
+# Create the main window
+root = tk.Tk()
+root.title("Word Counter")
+
+# Create text entry box
+text_entry = tk.Text(root, height=10, width=30)
+text_entry.pack()
+
+# Create a button to trigger word counting
+count_button = tk.Button(root, text="Count Words", command=count_words)
+count_button.pack()
+
+# Create a label to display the result
+result_label = tk.Label(root, text="")
+result_label.pack()
+
+root.mainloop()
